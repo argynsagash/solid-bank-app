@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+    <aop:config>
+        <!-- Aspect -->
+        <aop:aspect id="loggerAspect" ref="logger">
+
+            <!-- Pointcut -->
+            <aop:pointcut id="ClientAllMethods" expression="execution(* com.example.demo.ClientNew.*(..))"/>
+
+            <!-- Advice(s) -->
+            <aop:before pointcut-ref="ClientAllMethods" method="before"/>
+            <aop:after pointcut-ref="ClientAllMethods" method="after"/>
+            <aop:after-returning pointcut-ref="ClientAllMethods" returning="retVal" method="afterReturning"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="service" class="com.example.demo.Service">
+        <constructor-arg type="String" value="Hello World"/>
+    </bean>
+
+    <bean id="client" class="com.example.demo.Client">
+        <constructor-arg ref="service"/>
+    </bean>
+
+    <!-- через set методы испсользуем ниже -->
+    <!--    <bean id="client" class="com.example.demo.Client">-->
+    <!--        <property name="service">-->
+    <!--            <ref bean="service"/>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+
+    <bean id="reminder" class="com.example.demo.Reminder" scope="prototype">
+    </bean>
+
+    <bean id="clientTwo" class="com.example.demo.ClientNew">
+        <constructor-arg type="String" value="Client 2"/>
+        <constructor-arg ref="reminder"/>
+    </bean>
+
+    <bean id="clientOne" class="com.example.demo.ClientNew">
+        <constructor-arg type="String" value="Client 1"/>
+        <constructor-arg ref="reminder"/>
+    </bean>
+
+    <bean id="logger" class="com.example.demo.Logger"></bean>
+
+</beans>
