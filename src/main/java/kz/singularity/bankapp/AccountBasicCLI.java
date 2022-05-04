@@ -1,4 +1,6 @@
-package com.example.demo;
+package kz.singularity.bankapp;
+
+import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
 
 public class AccountBasicCLI {
     CreateAccountOperationUI createAccountOperationUI;
@@ -12,10 +14,10 @@ public class AccountBasicCLI {
     }
 
     public void createAccountRequest(String clientID) {
-
+        bankCore.createNewAccount(createAccountOperationUI.requestAccountType(), clientID);
     }
 
     public void getAccounts(String clientID) {
-
+        accountListing.getClientAccounts(clientID);
     }
 }

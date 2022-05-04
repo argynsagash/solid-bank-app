@@ -1,4 +1,6 @@
-package com.example.demo;
+package kz.singularity.bankapp.features.accounts.domain.models;
+
+import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
 
 public class Account {
     private AccountType accountType;
