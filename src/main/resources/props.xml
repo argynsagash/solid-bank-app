@@ -5,35 +5,24 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-
-    <bean id="service" class="com.example.demo.Service">
-        <constructor-arg type="String" value="Hello World"/>
+    <bean id="memoryAccountDAO" class=" kz.singularity.bankapp.MemoryAccountDAO">
     </bean>
 
-    <bean id="client" class="com.example.demo.Client">
-        <constructor-arg ref="service"/>
+    <bean id="accountCreationServiceImpl" class=" kz.singularity.bankapp.AccountCreationServiceImpl">
+        <constructor-arg ref="memoryAccountDAO"/>
     </bean>
 
-    <!-- через set методы испсользуем ниже -->
-    <!--    <bean id="client" class="com.example.demo.Client">-->
-    <!--        <property name="service">-->
-    <!--            <ref bean="service"/>-->
-    <!--        </property>-->
-    <!--    </bean>-->
-
-    <bean id="reminder" class="com.example.demo.Reminder" scope="prototype">
+    <bean id="accountListingService" class=" kz.singularity.bankapp.AccountListingServiceImpl">
     </bean>
 
-    <bean id="clientTwo" class="com.example.demo.ClientNew">
-        <constructor-arg type="String" value="Client 2"/>
-        <constructor-arg ref="reminder"/>
+    <bean id="bankCore" class=" kz.singularity.bankapp.BankCore">
+        <constructor-arg ref="accountCreationServiceImpl"/>
     </bean>
 
-    <bean id="clientOne" class="com.example.demo.ClientNew">
-        <constructor-arg type="String" value="Client 1"/>
-        <constructor-arg ref="reminder"/>
-    </bean>
+<!--    <bean id="myCLI" class=" kz.singularity.bankapp.MyCLI">-->
+<!--        <constructor-arg ref="scanner"/>-->
+<!--    </bean>-->
 
-    <bean id="logger" class="com.example.demo.Logger"></bean>
+
 
 </beans>

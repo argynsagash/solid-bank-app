@@ -2,6 +2,7 @@ package kz.singularity.bankapp;
 
 import kz.singularity.bankapp.features.accounts.domain.models.Account;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
+import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
 
 import java.util.List;
 
@@ -10,6 +11,6 @@ public interface AccountDAO {
     void createNewAccount(Account account);
     void updateAccount(Account account);
     List<Account> getClientAccountsByType(String clientID, AccountType accountType);
-    AccountWithdraw getClientWithdrawAccount(String clientID,String accountID);
+    AccountWithdraw getClientWithdrawAccount(String clientID, String accountID);
     Account getClientAccount(String clientID,String accountID);
 }

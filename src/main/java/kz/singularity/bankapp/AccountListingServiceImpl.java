@@ -1,8 +1,9 @@
-package kz.singularity.bankapp.features.accounts.data.services;
+package kz.singularity.bankapp;
 
 import kz.singularity.bankapp.*;
 import kz.singularity.bankapp.features.accounts.domain.models.Account;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
+import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
 
 import java.util.List;

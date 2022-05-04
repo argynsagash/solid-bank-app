@@ -1,16 +1,16 @@
 package kz.singularity.bankapp;
 
-import kz.singularity.bankapp.features.accounts.domain.models.Account;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
+import kz.singularity.bankapp.features.accounts.domain.models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemoryAccountDAO implements AccountDAO {
-    private List<Account> accountList;
+    private List<Account> accountList = new ArrayList<>();
 
     @Override
     public List<Account> getClientAccounts(String clientID) {
-        List<Account> list = null;
+        List<Account> list = new ArrayList<>();
         for (Account a : accountList) {
             if (a.getClientID().equals(clientID)) {
                 list.add(a);
@@ -19,10 +19,22 @@ public class MemoryAccountDAO implements AccountDAO {
         return list;
     }
 
-    // TODO: 04.05.2022 looks like it is wrong
     @Override
     public void createNewAccount(Account account) {
-        accountList.add(account);
+        if (account.getAccountType().equals(AccountType.SAVING)) {
+            accountList.add(new SavingAccount(account.getAccountType(), account.getId(), account.getClientID(),
+                    account.getBalance(), account.isWithdrawAllowed()));
+            System.out.println("Bank account created");
+        } else if (account.getAccountType().equals(AccountType.CHECKING)) {
+            accountList.add(new CheckingAccount(account.getAccountType(), account.getId(), account.getClientID(),
+                    account.getBalance(), account.isWithdrawAllowed()));
+            System.out.println("Bank account created");
+        } else {
+            accountList.add(new FixedAccount(account.getAccountType(), account.getId(), account.getClientID(),
+                    account.getBalance(), account.isWithdrawAllowed()));
+            System.out.println("Bank account created");
+        }
+
 
     }
 

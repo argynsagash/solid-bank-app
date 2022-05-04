@@ -1,13 +1,10 @@
 package kz.singularity.bankapp.features.accounts.presentation;
 
-import kz.singularity.bankapp.AccountBasicCLI;
-import kz.singularity.bankapp.AccountDAO;
-import kz.singularity.bankapp.MemoryAccountDAO;
-import kz.singularity.bankapp.MyCLI;
+import kz.singularity.bankapp.*;
 import kz.singularity.bankapp.features.accounts.domain.errors.WrongOperationNumber;
-import kz.singularity.bankapp.features.accounts.domain.models.Account;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
@@ -26,20 +23,33 @@ public class Application {
                 "5 - transfer\n" +
                 "6 - this message\n" +
                 "7 - exit\n");
+
+
+
+
+        //MemoryAccountDAO memoryAccountDAO = new MemoryAccountDAO();
+        MemoryAccountDAO memoryAccountDAO = context.getBean("memoryAccountDAO", MemoryAccountDAO.class);
+        //AccountCreationServiceImpl accountCreationServiceImpl = new AccountCreationServiceImpl(memoryAccountDAO);
+        AccountCreationServiceImpl accountCreationServiceImpl = context.getBean("accountCreationServiceImpl", AccountCreationServiceImpl.class);
+        //AccountListingServiceImpl accountListingService = new AccountListingServiceImpl();
+        AccountListingServiceImpl accountListingService = context.getBean("accountListingService",AccountListingServiceImpl.class);
+        //BankCore bankCore = new BankCore(accountCreationServiceImpl);
+        BankCore bankCore = context.getBean("bankCore", BankCore.class);
+
         Scanner scanner = new Scanner(System.in);
+
+        MyCLI myCLI = new MyCLI(scanner);
+        //AccountBasicCLI accountBasicCLI = new AccountBasicCLI(myCLI, bankCore, accountListingService);
+
+
         while (true) {
             String line = scanner.nextLine();
-            if (line.equals("7")) {
-                System.out.println("Application Closed");
-                return;
-            } else if (line.equals("1")) {
-                MemoryAccountDAO memoryAccountDAO = new MemoryAccountDAO();
-                System.out.println(memoryAccountDAO.getClientAccounts("1"));
+            if (line.equals("1")) {
+                System.out.println(memoryAccountDAO.getClientAccounts(myCLI.requestClientAccountNumber()));
             } else if (line.equals("2")) {
-                MemoryAccountDAO memoryAccountDAO = new MemoryAccountDAO();
-                MyCLI myCLI = new MyCLI(scanner);
-                myCLI.requestAccountType();
+                bankCore.createNewAccount(myCLI.requestAccountType(), myCLI.requestClientAccountNumber());
             } else if (line.equals("3")) {
+
                 System.out.println("Application Closed");
                 return;
             } else if (line.equals("4")) {
@@ -49,6 +59,9 @@ public class Application {
                 System.out.println("Application Closed");
                 return;
             } else if (line.equals("6")) {
+                System.out.println("Application Closed");
+                return;
+            } else if (line.equals("7")) {
                 System.out.println("Application Closed");
                 return;
             } else try {

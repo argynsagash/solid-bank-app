@@ -1,7 +1,4 @@
-package kz.singularity.bankapp;
-
-import kz.singularity.bankapp.features.accounts.domain.models.Account;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
+package kz.singularity.bankapp.features.accounts.domain.models;
 
 public class AccountWithdraw extends Account {
     public AccountWithdraw(AccountType accountType, String id, String clientID, double balance, boolean withdrawAllowed) {
