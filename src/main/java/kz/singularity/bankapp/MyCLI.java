@@ -9,8 +9,17 @@ import java.util.Scanner;
 public class MyCLI implements CLIUI {
     private Scanner scanner;
 
+    public MyCLI() {
+        this.scanner = new Scanner(System.in);
+
+
+    }
     public MyCLI(Scanner scanner) {
         this.scanner = scanner;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 
     public double requestClientAmount() {

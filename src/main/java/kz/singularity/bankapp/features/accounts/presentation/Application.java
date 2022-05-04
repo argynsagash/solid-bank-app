@@ -4,10 +4,7 @@ import kz.singularity.bankapp.*;
 import kz.singularity.bankapp.features.accounts.domain.errors.WrongOperationNumber;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Scanner;
 
 @SpringBootApplication
 public class Application {
@@ -25,25 +22,23 @@ public class Application {
                 "7 - exit\n");
 
 
-
-
-        //MemoryAccountDAO memoryAccountDAO = new MemoryAccountDAO();
-        MemoryAccountDAO memoryAccountDAO = context.getBean("memoryAccountDAO", MemoryAccountDAO.class);
-        //AccountCreationServiceImpl accountCreationServiceImpl = new AccountCreationServiceImpl(memoryAccountDAO);
-        AccountCreationServiceImpl accountCreationServiceImpl = context.getBean("accountCreationServiceImpl", AccountCreationServiceImpl.class);
+//        MemoryAccountDAO memoryAccountDAO = new MemoryAccountDAO();
+//        AccountCreationServiceImpl accountCreationServiceImpl = new AccountCreationServiceImpl(memoryAccountDAO);
+//        BankCore bankCore = new BankCore(accountCreationServiceImpl);
+//        MyCLI myCLI = new MyCLI();
         //AccountListingServiceImpl accountListingService = new AccountListingServiceImpl();
-        AccountListingServiceImpl accountListingService = context.getBean("accountListingService",AccountListingServiceImpl.class);
-        //BankCore bankCore = new BankCore(accountCreationServiceImpl);
-        BankCore bankCore = context.getBean("bankCore", BankCore.class);
-
-        Scanner scanner = new Scanner(System.in);
-
-        MyCLI myCLI = new MyCLI(scanner);
         //AccountBasicCLI accountBasicCLI = new AccountBasicCLI(myCLI, bankCore, accountListingService);
 
 
+        MemoryAccountDAO memoryAccountDAO = context.getBean("memoryAccountDAO", MemoryAccountDAO.class);
+        BankCore bankCore = context.getBean("bankCore", BankCore.class);
+        MyCLI myCLI = context.getBean("myCLI",MyCLI.class);
+//        AccountCreationServiceImpl accountCreationServiceImpl = context.getBean("accountCreationServiceImpl", AccountCreationServiceImpl.class);
+//        AccountListingServiceImpl accountListingService = context.getBean("accountListingService",AccountListingServiceImpl.class);
+
+
         while (true) {
-            String line = scanner.nextLine();
+            String line = myCLI.getScanner().nextLine();
             if (line.equals("1")) {
                 System.out.println(memoryAccountDAO.getClientAccounts(myCLI.requestClientAccountNumber()));
             } else if (line.equals("2")) {
