@@ -1,8 +1,9 @@
-package kz.singularity.bankapp;
+package kz.singularity.bankapp.features.accounts.domain;
 
-import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
-import kz.singularity.bankapp.features.accounts.domain.services.AccountCreationService;
+import kz.singularity.bankapp.features.accounts.services.AccountCreationService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BankCore {
     private static long id = 1;
     private long lastAccountNumber = 1;

@@ -1,16 +1,18 @@
-package kz.singularity.bankapp;
+package kz.singularity.bankapp.features.accounts.services.impl;
 
-import kz.singularity.bankapp.*;
-import kz.singularity.bankapp.features.accounts.domain.models.Account;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
-import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
+import kz.singularity.bankapp.features.accounts.domain.*;
+import kz.singularity.bankapp.features.accounts.services.AccountListingService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class AccountListingServiceImpl implements AccountListingService {
     private AccountDAO accountDAO;
 
+    public AccountListingServiceImpl(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
 
     @Override
     public List<Account> getClientAccounts(String clientID) {

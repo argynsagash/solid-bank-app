@@ -1,4 +1,4 @@
-package kz.singularity.bankapp.features.accounts.domain.models;
+package kz.singularity.bankapp.features.accounts.domain;
 
 public class Account {
     private AccountType accountType;
@@ -58,10 +58,6 @@ public class Account {
 
     @Override
     public String toString() {
-        String accountNumber = String.format("%03d%06d", 1, Integer.parseInt(id));
-        return "Account{" + "id='" + accountNumber + '\'' +
-                ", clientID='" + clientID + '\'' +
-                ", balance=" + balance +
-                '}';
+        return "Account{" + "id='" + id + ", clientID='" + clientID + ", balance=" + balance + '}';
     }
 }

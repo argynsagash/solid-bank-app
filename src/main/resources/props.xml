@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="kz.singularity.bankapp.features.accounts"/>
 
 
-    <bean id="memoryAccountDAO" class=" kz.singularity.bankapp.MemoryAccountDAO">
-    </bean>
 
-    <bean id="accountCreationServiceImpl" class=" kz.singularity.bankapp.AccountCreationServiceImpl">
-        <constructor-arg ref="memoryAccountDAO"/>
-    </bean>
 
-    <bean id="accountListingService" class=" kz.singularity.bankapp.AccountListingServiceImpl">
-    </bean>
 
-    <bean id="bankCore" class=" kz.singularity.bankapp.BankCore">
-        <constructor-arg ref="accountCreationServiceImpl"/>
-    </bean>
 
-    <bean id="myCLI" class=" kz.singularity.bankapp.MyCLI">
-    </bean>
 
 
 

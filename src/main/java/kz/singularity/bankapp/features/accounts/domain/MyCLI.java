@@ -1,11 +1,11 @@
-package kz.singularity.bankapp;
+package kz.singularity.bankapp.features.accounts.domain;
 
-import kz.singularity.bankapp.features.accounts.domain.errors.WrongAccountType;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
+import kz.singularity.bankapp.features.accounts.errors.WrongAccountType;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-
+@Component
 public class MyCLI implements CLIUI {
     private Scanner scanner;
 
@@ -14,6 +14,7 @@ public class MyCLI implements CLIUI {
 
 
     }
+
     public MyCLI(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -23,11 +24,13 @@ public class MyCLI implements CLIUI {
     }
 
     public double requestClientAmount() {
-        return 0.0;
+        System.out.println("Type Amount of money");
+        return Double.parseDouble(scanner.nextLine());
     }
 
     public String requestClientAccountNumber() {
-        return "1";
+        System.out.println("Type account ID");
+        return scanner.nextLine();
     }
 
     public AccountType requestAccountType() {

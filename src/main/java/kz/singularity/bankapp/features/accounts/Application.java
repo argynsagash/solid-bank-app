@@ -1,7 +1,9 @@
-package kz.singularity.bankapp.features.accounts.presentation;
+package kz.singularity.bankapp.features.accounts;
 
-import kz.singularity.bankapp.*;
-import kz.singularity.bankapp.features.accounts.domain.errors.WrongOperationNumber;
+import kz.singularity.bankapp.features.accounts.domain.AccountBasicCLI;
+import kz.singularity.bankapp.features.accounts.domain.BankCore;
+import kz.singularity.bankapp.features.accounts.errors.WrongOperationNumber;
+import kz.singularity.bankapp.features.accounts.domain.MyCLI;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -30,9 +32,13 @@ public class Application {
         //AccountBasicCLI accountBasicCLI = new AccountBasicCLI(myCLI, bankCore, accountListingService);
 
 
-        MemoryAccountDAO memoryAccountDAO = context.getBean("memoryAccountDAO", MemoryAccountDAO.class);
+       // MemoryAccountDAO memoryAccountDAO = context.getBean("memoryAccountDAO", MemoryAccountDAO.class);
         BankCore bankCore = context.getBean("bankCore", BankCore.class);
         MyCLI myCLI = context.getBean("myCLI",MyCLI.class);
+        AccountBasicCLI accountBasicCLI = context.getBean(AccountBasicCLI.class);
+//        MemoryAccountDAO memoryAccountDAO = context.getBean(MemoryAccountDAO.class);
+//        BankCore bankCore = context.getBean(BankCore.class);
+//        MyCLI myCLI = context.getBean(MyCLI.class);
 //        AccountCreationServiceImpl accountCreationServiceImpl = context.getBean("accountCreationServiceImpl", AccountCreationServiceImpl.class);
 //        AccountListingServiceImpl accountListingService = context.getBean("accountListingService",AccountListingServiceImpl.class);
 
@@ -40,7 +46,8 @@ public class Application {
         while (true) {
             String line = myCLI.getScanner().nextLine();
             if (line.equals("1")) {
-                System.out.println(memoryAccountDAO.getClientAccounts(myCLI.requestClientAccountNumber()));
+                accountBasicCLI.getAccounts("1");
+               // System.out.println(memoryAccountDAO.getClientAccounts(myCLI.requestClientAccountNumber()));
             } else if (line.equals("2")) {
                 bankCore.createNewAccount(myCLI.requestAccountType(), myCLI.requestClientAccountNumber());
             } else if (line.equals("3")) {

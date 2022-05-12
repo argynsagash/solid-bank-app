@@ -1,4 +1,4 @@
-package kz.singularity.bankapp.features.accounts.domain.errors;
+package kz.singularity.bankapp.features.accounts.errors;
 
 public class WrongAccountType extends Exception {
     public WrongAccountType(String errorMessage) {

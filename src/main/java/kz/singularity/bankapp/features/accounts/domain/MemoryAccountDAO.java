@@ -1,10 +1,11 @@
-package kz.singularity.bankapp;
+package kz.singularity.bankapp.features.accounts.domain;
 
-import kz.singularity.bankapp.features.accounts.domain.models.*;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MemoryAccountDAO implements AccountDAO {
     private List<Account> accountList = new ArrayList<>();
 
@@ -64,7 +65,9 @@ public class MemoryAccountDAO implements AccountDAO {
     public AccountWithdraw getClientWithdrawAccount(String clientID, String accountID) {
         for (Account a : accountList) {
             if (a.getClientID().equals(clientID) && a.getId().equals(accountID)) {
-                if (a.isWithdrawAllowed()) return (AccountWithdraw) a;
+                if (a.isWithdrawAllowed()) {
+                    return (AccountWithdraw) a;
+                }
             }
         }
         return null;

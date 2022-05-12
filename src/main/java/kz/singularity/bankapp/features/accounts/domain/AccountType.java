@@ -1,4 +1,4 @@
-package kz.singularity.bankapp.features.accounts.domain.models;
+package kz.singularity.bankapp.features.accounts.domain;
 
 public enum AccountType {
     CHECKING,

@@ -1,4 +1,4 @@
-package kz.singularity.bankapp.features.accounts.domain.models;
+package kz.singularity.bankapp.features.accounts.domain;
 
 public class FixedAccount extends AccountDeposit {
     public FixedAccount(AccountType accountType, String id, String clientID, double balance, boolean withdrawAllowed) {
