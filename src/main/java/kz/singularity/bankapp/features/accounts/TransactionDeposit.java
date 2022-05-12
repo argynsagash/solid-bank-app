@@ -1,5 +1,7 @@
 package kz.singularity.bankapp.features.accounts;
 
+import kz.singularity.bankapp.features.accounts.domain.Account;
+import kz.singularity.bankapp.features.accounts.domain.AccountDeposit;
 import kz.singularity.bankapp.features.accounts.domain.AccountWithdraw;
 import org.springframework.stereotype.Component;
 
@@ -15,5 +17,8 @@ public class TransactionDeposit {
 
     void execute(AccountWithdraw accountWithdraw, double amount) {
         accountDepositService.deposit(amount, accountWithdraw);
+    }
+    void execute(AccountDeposit accountDeposit, double amount) {
+        accountDepositService.deposit(amount, accountDeposit);
     }
 }

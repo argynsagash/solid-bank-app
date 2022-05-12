@@ -1,6 +1,8 @@
 package kz.singularity.bankapp.features.accounts;
 
 import kz.singularity.bankapp.features.accounts.domain.AccountDAO;
+import kz.singularity.bankapp.features.accounts.domain.AccountDeposit;
+import kz.singularity.bankapp.features.accounts.domain.AccountType;
 import kz.singularity.bankapp.features.accounts.domain.AccountWithdraw;
 import org.springframework.stereotype.Component;
 
@@ -20,5 +22,10 @@ public class AccountWithdrawServiceImpl implements AccountWithdrawService {
             System.out.println(message);
             accountDAO.updateAccount(account);
         } else System.out.println("You don't have enough money");
+    }
+
+    @Override
+    public void withdraw(double amount, AccountDeposit account) {
+        System.out.println("Cant withdraw money from Deposit account");
     }
 }

@@ -1,5 +1,8 @@
 package kz.singularity.bankapp.features.accounts;
 
+import kz.singularity.bankapp.features.accounts.domain.Account;
+import kz.singularity.bankapp.features.accounts.domain.AccountDeposit;
+import kz.singularity.bankapp.features.accounts.domain.AccountWithdraw;
 import kz.singularity.bankapp.features.accounts.services.AccountListingService;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +21,17 @@ public class TransactionDepositCLI {
     }
 
     void depositMoney(String clientID) {
-        transactionDeposit.execute(accountListingService.getClientWithdrawAccount(clientID,
-                        withdrawDepositOperationCLIUI.requestClientAccountNumber()),
-                withdrawDepositOperationCLIUI.requestClientAmount());
+        Account account = accountListingService.getClientAccount(clientID, withdrawDepositOperationCLIUI.requestClientAccountNumber());
+
+            if (account instanceof AccountWithdraw) {
+                transactionDeposit.execute((AccountWithdraw) account,
+                        withdrawDepositOperationCLIUI.requestClientAmount());
+            } else {
+                transactionDeposit.execute((AccountDeposit) account,
+                        withdrawDepositOperationCLIUI.requestClientAmount());
+            }
+
+
+
     }
 }
