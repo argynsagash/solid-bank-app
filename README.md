@@ -9,6 +9,9 @@
 
 - 1 - show accounts
 - 2 - create account
+- 3 - deposit
+- 4 - withdraw
+- 6 - help
 - 7 - exit
 
 ## Запуск
