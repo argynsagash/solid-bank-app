@@ -5,33 +5,26 @@ import kz.singularity.bankapp.features.accounts.domain.models.Account;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountDeposit;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class TransactionDepositCLI {
     TransactionDeposit transactionDeposit;
     WithdrawDepositOperationCLIUI withdrawDepositOperationCLIUI;
     AccountListingService accountListingService;
 
-    public TransactionDepositCLI(TransactionDeposit transactionDeposit,
-                                 WithdrawDepositOperationCLIUI withdrawDepositOperationCLIUI,
-                                 AccountListingService accountListingService) {
-        this.transactionDeposit = transactionDeposit;
-        this.withdrawDepositOperationCLIUI = withdrawDepositOperationCLIUI;
-        this.accountListingService = accountListingService;
-    }
-
     public void depositMoney(String clientID) {
         Account account = accountListingService.getClientAccount(clientID, withdrawDepositOperationCLIUI.requestClientAccountNumber());
 
-            if (account instanceof AccountWithdraw) {
-                transactionDeposit.execute((AccountWithdraw) account,
-                        withdrawDepositOperationCLIUI.requestClientAmount());
-            } else {
-                transactionDeposit.execute((AccountDeposit) account,
-                        withdrawDepositOperationCLIUI.requestClientAmount());
-            }
-
+        if (account instanceof AccountWithdraw) {
+            transactionDeposit.execute((AccountWithdraw) account,
+                    withdrawDepositOperationCLIUI.requestClientAmount());
+        } else {
+            transactionDeposit.execute((AccountDeposit) account,
+                    withdrawDepositOperationCLIUI.requestClientAmount());
+        }
 
 
     }

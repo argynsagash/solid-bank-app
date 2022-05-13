@@ -5,21 +5,15 @@ import kz.singularity.bankapp.features.accounts.domain.models.Account;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountDeposit;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class TransactionWithdrawCLI {
     TransactionWithdraw transactionWithdraw;
     WithdrawDepositOperationCLIUI withdrawDepositOperationCLIUI;
     AccountListingService accountListingService;
-
-    public TransactionWithdrawCLI(TransactionWithdraw transactionWithdraw,
-                                  WithdrawDepositOperationCLIUI withdrawDepositOperationCLIUI,
-                                  AccountListingService accountListingService) {
-        this.transactionWithdraw = transactionWithdraw;
-        this.withdrawDepositOperationCLIUI = withdrawDepositOperationCLIUI;
-        this.accountListingService = accountListingService;
-    }
 
     public void withdrawMoney(String clientID) {
         Account account = accountListingService.getClientAccount(clientID, withdrawDepositOperationCLIUI.requestClientAccountNumber());
