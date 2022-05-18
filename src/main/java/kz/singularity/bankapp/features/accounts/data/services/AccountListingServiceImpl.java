@@ -5,17 +5,15 @@ import kz.singularity.bankapp.features.accounts.domain.models.Account;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@AllArgsConstructor
 public class AccountListingServiceImpl implements AccountListingService {
     private AccountDAO accountDAO;
-
-    public AccountListingServiceImpl(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
-    }
 
     @Override
     public List<Account> getClientAccounts(String clientID) {

@@ -2,6 +2,8 @@ package kz.singularity.bankapp;
 
 import kz.singularity.bankapp.core.presentation.controller.MyCLI;
 import kz.singularity.bankapp.features.accounts.presentation.controller.AccountBasicCLI;
+import kz.singularity.bankapp.features.customers.Customer;
+import kz.singularity.bankapp.features.customers.CustomerRepository;
 import kz.singularity.bankapp.features.transactions.presentation.controller.TransactionDepositCLI;
 import kz.singularity.bankapp.features.transactions.presentation.controller.TransactionWithdrawCLI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
+
 public class DemoApplication implements CommandLineRunner {
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class);
@@ -21,6 +26,12 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... arg0) throws Exception {
+
+        for (Customer i: customerRepository.findAll()) {
+            System.out.println(i.toString());
+        }
+
+
         boolean running = true;
         String clientID = "1";
 
@@ -37,9 +48,9 @@ public class DemoApplication implements CommandLineRunner {
                 "5 - transfer\n" +
                 "6 - this message\n" +
                 "7 - exit\n";
-        System.out.printf("Welcome to CLI bank service\n");
-        System.out.printf("Enter operation number: \n");
-        System.out.printf(helpMessage);
+        System.out.print("Welcome to CLI bank service\n");
+        System.out.print("Enter operation number: \n");
+        System.out.print(helpMessage);
 
         while(running){
             switch(myCLI.getScanner().nextLine()){
@@ -61,16 +72,16 @@ public class DemoApplication implements CommandLineRunner {
                     break;
 
                 case "6":
-                    System.out.printf(helpMessage);
+                    System.out.print(helpMessage);
                     break;
 
                 case "7":
-                    System.out.printf("Application Closed\n");
+                    System.out.print("Application Closed\n");
                     running = false;
                     break;
 
                 default:
-                    System.out.printf("Command not recognized!\n");
+                    System.out.print("Command not recognized!\n");
                     break;
             }
         }
