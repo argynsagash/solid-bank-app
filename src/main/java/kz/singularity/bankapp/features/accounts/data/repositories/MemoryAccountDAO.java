@@ -10,6 +10,8 @@ import java.util.List;
 public class MemoryAccountDAO implements AccountDAO {
     private List<Account> accountList = new ArrayList<>();
 
+
+    //DONE
     @Override
     public List<Account> getClientAccounts(String clientID) {
         List<Account> list = new ArrayList<>();
@@ -21,6 +23,7 @@ public class MemoryAccountDAO implements AccountDAO {
         return list;
     }
 
+    //DONE
     @Override
     public void createNewAccount(Account account) {
         if (account.getAccountType().equals(AccountType.SAVING)) {

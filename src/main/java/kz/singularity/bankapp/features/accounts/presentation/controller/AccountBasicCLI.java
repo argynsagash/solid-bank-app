@@ -17,6 +17,6 @@ public class AccountBasicCLI {
     }
 
     public void getAccounts(String clientID) {
-        System.out.println(accountListingService.getClientAccounts(clientID));
+        System.out.println(accountListingService.getAccounts(clientID));
     }
 }

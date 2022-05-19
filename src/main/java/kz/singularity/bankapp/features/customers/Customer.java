@@ -1,5 +1,6 @@
 package kz.singularity.bankapp.features.customers;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,8 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 public class Customer {
-    private @Id
-    Long customerId;
+    @Id
+    private Long customerId;
     private String firstName;
     private String lastName;
     private String email;

@@ -1,6 +1,8 @@
 package kz.singularity.bankapp;
 
 import kz.singularity.bankapp.core.presentation.controller.MyCLI;
+import kz.singularity.bankapp.features.accounts.data.entities.AccountEntity;
+import kz.singularity.bankapp.features.accounts.data.repositories.AccountRepository;
 import kz.singularity.bankapp.features.accounts.presentation.controller.AccountBasicCLI;
 import kz.singularity.bankapp.features.customers.Customer;
 import kz.singularity.bankapp.features.customers.CustomerRepository;
@@ -19,6 +21,9 @@ public class DemoApplication implements CommandLineRunner {
     private ApplicationContext context;
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private AccountRepository accountRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class);
@@ -26,6 +31,11 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... arg0) throws Exception {
+
+        //System.out.println(accountRepository.findByClientIDAndId());
+        for (AccountEntity i: accountRepository.findAll()) {
+            System.out.println(i.toString());
+        }
 
         for (Customer i: customerRepository.findAll()) {
             System.out.println(i.toString());
