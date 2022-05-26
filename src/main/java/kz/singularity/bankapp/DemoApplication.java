@@ -1,11 +1,9 @@
 package kz.singularity.bankapp;
 
 import kz.singularity.bankapp.core.presentation.controller.MyCLI;
-import kz.singularity.bankapp.features.accounts.data.entities.AccountEntity;
+import kz.singularity.bankapp.features.accounts.data.entities.Account;
 import kz.singularity.bankapp.features.accounts.data.repositories.AccountRepository;
 import kz.singularity.bankapp.features.accounts.presentation.controller.AccountBasicCLI;
-import kz.singularity.bankapp.features.customers.Customer;
-import kz.singularity.bankapp.features.customers.CustomerRepository;
 import kz.singularity.bankapp.features.transactions.presentation.controller.TransactionDepositCLI;
 import kz.singularity.bankapp.features.transactions.presentation.controller.TransactionWithdrawCLI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,7 @@ import org.springframework.context.ApplicationContext;
 public class DemoApplication implements CommandLineRunner {
     @Autowired
     private ApplicationContext context;
-    @Autowired
-    private CustomerRepository customerRepository;
+
     @Autowired
     private AccountRepository accountRepository;
 
@@ -30,17 +27,12 @@ public class DemoApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... arg0) throws Exception {
+    public void run(String... arg0) {
 
         //System.out.println(accountRepository.findByClientIDAndId());
-        for (AccountEntity i: accountRepository.findAll()) {
+        for (Account i : accountRepository.findAll()) {
             System.out.println(i.toString());
         }
-
-        for (Customer i: customerRepository.findAll()) {
-            System.out.println(i.toString());
-        }
-
 
         boolean running = true;
         String clientID = "1";
@@ -52,18 +44,18 @@ public class DemoApplication implements CommandLineRunner {
 
         String helpMessage =
                 "1 - show accounts\n" +
-                "2 - create account\n" +
-                "3 - deposit\n" +
-                "4 - withdraw\n" +
-                "5 - transfer\n" +
-                "6 - this message\n" +
-                "7 - exit\n";
+                        "2 - create account\n" +
+                        "3 - deposit\n" +
+                        "4 - withdraw\n" +
+                        "5 - transfer\n" +
+                        "6 - this message\n" +
+                        "7 - exit\n";
         System.out.print("Welcome to CLI bank service\n");
         System.out.print("Enter operation number: \n");
         System.out.print(helpMessage);
 
-        while(running){
-            switch(myCLI.getScanner().nextLine()){
+        while (running) {
+            switch (myCLI.getScanner().nextLine()) {
 
                 case "1":
                     accountBasicCLI.getAccounts(clientID);

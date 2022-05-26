@@ -1,16 +1,10 @@
 package kz.singularity.bankapp.features.accounts.domain.services;
 
-import kz.singularity.bankapp.features.accounts.data.entities.AccountEntity;
-import kz.singularity.bankapp.features.accounts.domain.models.Account;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountType;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
+import kz.singularity.bankapp.features.accounts.data.entities.Account;
 
 import java.util.List;
 
-public interface AccountListingService{
-    List<AccountEntity> getAccounts(String clientID);
-    List<Account> getClientAccounts(String clientID);
-    List<Account> getClientAccountsByType(String clientID, AccountType accountType);
-    AccountWithdraw getClientWithdrawAccount(String clientID, String accountID);
-    Account getClientAccount(String clientID,String accountID);
+public interface AccountListingService {
+    List<Account> getAccounts(String clientID);
+    Account getClientAccount(String clientID, String accountID);
 }

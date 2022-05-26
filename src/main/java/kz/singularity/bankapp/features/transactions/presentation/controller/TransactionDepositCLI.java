@@ -1,10 +1,8 @@
 package kz.singularity.bankapp.features.transactions.presentation.controller;
 
-import kz.singularity.bankapp.features.transactions.domain.services.TransactionDeposit;
-import kz.singularity.bankapp.features.accounts.domain.models.Account;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountDeposit;
-import kz.singularity.bankapp.features.accounts.domain.models.AccountWithdraw;
+import kz.singularity.bankapp.features.accounts.data.entities.Account;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
+import kz.singularity.bankapp.features.transactions.domain.services.TransactionDeposit;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,14 +15,7 @@ public class TransactionDepositCLI {
 
     public void depositMoney(String clientID) {
         Account account = accountListingService.getClientAccount(clientID, withdrawDepositOperationCLIUI.requestClientAccountNumber());
-
-        if (account instanceof AccountWithdraw) {
-            transactionDeposit.execute((AccountWithdraw) account,
-                    withdrawDepositOperationCLIUI.requestClientAmount());
-        } else {
-            transactionDeposit.execute((AccountDeposit) account,
-                    withdrawDepositOperationCLIUI.requestClientAmount());
-        }
+        transactionDeposit.execute(account, withdrawDepositOperationCLIUI.requestClientAmount());
 
 
     }

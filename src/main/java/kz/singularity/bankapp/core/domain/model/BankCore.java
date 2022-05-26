@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 public class BankCore {
     private static long id = 1;
     private long lastAccountNumber = 1;
-    private AccountCreationService accountCreation;
+    private AccountCreationService accountCreationService;
 
     public BankCore(AccountCreationService accountCreation) {
-        this.accountCreation = accountCreation;
+        this.accountCreationService = accountCreation;
     }
 
     public void createNewAccount(AccountType accountType, String clientID) {
-        accountCreation.createE(accountType, id, clientID, lastAccountNumber);
+        accountCreationService.create(accountType, id, clientID, lastAccountNumber);
         incrementLastAccountNumber();
     }
 
