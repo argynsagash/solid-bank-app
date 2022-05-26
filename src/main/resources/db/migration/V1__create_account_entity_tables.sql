@@ -17,7 +17,7 @@ CREATE TABLE Transaction
     account_id       NVARCHAR(40) NOT NULL,
 
     CONSTRAINT PK_Transaction PRIMARY KEY (id),
-    FK_TRANSACTION_ON_ACCOUNT FOREIGN KEY (account_id) REFERENCES Account (id)
+    FOREIGN KEY (account_id) REFERENCES Account (id)
 );
 
 
