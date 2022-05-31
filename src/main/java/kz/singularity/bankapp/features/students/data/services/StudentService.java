@@ -3,6 +3,7 @@ package kz.singularity.bankapp.features.students.data.services;
 import kz.singularity.bankapp.features.students.data.entities.Student;
 import kz.singularity.bankapp.features.students.data.repositories.StudentRepository;
 import kz.singularity.bankapp.features.students.domain.errors.StudentNotFound;
+import kz.singularity.bankapp.features.students.domain.models.StudentRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
