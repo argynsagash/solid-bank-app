@@ -2,6 +2,7 @@ package kz.singularity.bankapp.features.accounts.presentation.controller;
 
 import kz.singularity.bankapp.core.domain.model.BankCore;
 import kz.singularity.bankapp.features.accounts.data.entities.Account;
+import kz.singularity.bankapp.features.accounts.data.repositories.AccountRepository;
 import kz.singularity.bankapp.features.accounts.data.services.AccountCreationServiceImpl;
 import kz.singularity.bankapp.features.accounts.data.services.AccountListingServiceImpl;
 import kz.singularity.bankapp.features.accounts.domain.models.AccountRequest;
@@ -33,6 +34,8 @@ public class AccountController {
     private TransactionDepositCLI transactionDepositCLI;
     @Autowired
     private TransactionServiceImpl transactionServiceImpl;
+    @Autowired
+    private AccountRepository accountRepository;
 
 
 
@@ -61,8 +64,13 @@ public class AccountController {
     //    POST    /accounts/{account_id}/withdraw         Снятие денег со счета
     @PostMapping("/{account_id}/withdraw")
     public String withdraw(Double amount, String accountID) {
-         transactionWithdrawCLI.withdrawFromAccount(amount,accountID);
-        return String.format("%.2f transferred from %s account", amount, accountID);
+
+         Account account = accountRepository.getAccountEntityByClientIDAndId("1",accountID);
+         if(amount <= account.getBalance()) {
+             transactionWithdrawCLI.withdrawFromAccount(amount,accountID);
+             return String.format("%.2f transferred from %s account", amount, accountID);
+         }
+         else return "You don't have enough money";
     }
 
     //    POST    /accounts/{account_id}/deposit          Внесение денег на счет
@@ -80,9 +88,9 @@ public class AccountController {
 
     //    DELETE  /accounts/{account_id}                  Удаление счета
     @DeleteMapping("/{account_id}")
-    public boolean deleteStudent(String id) {
+    public String deleteStudent(String id) {
         accountListingService.deleteAccountById(id);
-        return true;
+        return String.format("Account %s deleted", id);
     }
 
 
