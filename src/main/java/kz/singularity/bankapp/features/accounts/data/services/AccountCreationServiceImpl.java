@@ -6,6 +6,7 @@ import kz.singularity.bankapp.features.accounts.data.repositories.AccountReposit
 import kz.singularity.bankapp.features.accounts.domain.models.*;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountCreationService;
 import kz.singularity.bankapp.features.students.data.entities.Student;
+import kz.singularity.bankapp.features.transactions.data.entities.Transaction;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

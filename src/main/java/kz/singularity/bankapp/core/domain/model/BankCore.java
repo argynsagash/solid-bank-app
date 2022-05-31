@@ -21,11 +21,6 @@ public class BankCore {
         incrementLastAccountNumber();
     }
 
-    public void createAccount(AccountType accountType, String clientID) {
-        accountCreationService.create(accountType, id, clientID, lastAccountNumber);
-        incrementLastAccountNumber();
-    }
-
     private void incrementLastAccountNumber() {
         this.lastAccountNumber = lastAccountNumber + 1;
 

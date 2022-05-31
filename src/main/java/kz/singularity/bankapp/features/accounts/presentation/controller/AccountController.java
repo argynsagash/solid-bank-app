@@ -10,6 +10,7 @@ import kz.singularity.bankapp.features.students.data.entities.Student;
 import kz.singularity.bankapp.features.students.data.services.StudentService;
 import kz.singularity.bankapp.features.students.domain.models.StudentRequest;
 import kz.singularity.bankapp.features.transactions.data.entities.Transaction;
+import kz.singularity.bankapp.features.transactions.data.services.TransactionServiceImpl;
 import kz.singularity.bankapp.features.transactions.presentation.controller.TransactionDepositCLI;
 import kz.singularity.bankapp.features.transactions.presentation.controller.TransactionWithdrawCLI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,6 @@ import java.util.List;
 @RequestMapping("/accounts")
 public class AccountController {
     @Autowired
-    private AccountCreationServiceImpl accountCreationService;
-    @Autowired
     private AccountListingServiceImpl accountListingService;
     @Autowired
     private BankCore bankCore;
@@ -32,6 +31,8 @@ public class AccountController {
     private TransactionWithdrawCLI transactionWithdrawCLI;
     @Autowired
     private TransactionDepositCLI transactionDepositCLI;
+    @Autowired
+    private TransactionServiceImpl transactionServiceImpl;
 
 
 
@@ -72,10 +73,10 @@ public class AccountController {
     }
 
     //    GET     /accounts/{account_id}/transactions     Получение списка всех транзакций
-//    @GetMapping()
-//    public List<Transaction> getTransactionsByAccountID(String accountID) {
-//        return accountListingService.getAllAccounts();
-//    }
+    @GetMapping("/{account_id}/transactions")
+    public List<Transaction> getTransactionsByAccountID(String accountID) {
+        return transactionServiceImpl.getByAccountId(accountID);
+    }
 
     //    DELETE  /accounts/{account_id}                  Удаление счета
     @DeleteMapping("/{account_id}")

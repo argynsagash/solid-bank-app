@@ -12,7 +12,7 @@ CREATE TABLE Account
 CREATE TABLE Transaction
 (
 
-    id               INTEGER UNIQUE,
+    id               IDENTITY NOT NULL,
     transaction_info NVARCHAR(128) NOT NULL,
     account_id       NVARCHAR(40) NOT NULL,
 
