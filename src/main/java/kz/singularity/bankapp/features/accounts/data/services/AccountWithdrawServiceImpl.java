@@ -5,8 +5,9 @@ import kz.singularity.bankapp.features.accounts.data.repositories.AccountReposit
 import kz.singularity.bankapp.features.accounts.domain.services.AccountWithdrawService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @AllArgsConstructor
 public class AccountWithdrawServiceImpl implements AccountWithdrawService {
     private AccountRepository accountRepository;
