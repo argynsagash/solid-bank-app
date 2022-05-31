@@ -5,10 +5,11 @@ import kz.singularity.bankapp.features.accounts.data.repositories.AccountReposit
 import kz.singularity.bankapp.features.accounts.domain.services.AccountListingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 @AllArgsConstructor
 public class AccountListingServiceImpl implements AccountListingService {
     private AccountRepository accountRepository;

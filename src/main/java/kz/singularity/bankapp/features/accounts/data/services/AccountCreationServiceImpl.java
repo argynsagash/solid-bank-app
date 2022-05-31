@@ -6,8 +6,10 @@ import kz.singularity.bankapp.features.accounts.domain.models.*;
 import kz.singularity.bankapp.features.accounts.domain.services.AccountCreationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+
+@Service
 @AllArgsConstructor
 public class AccountCreationServiceImpl implements AccountCreationService {
     private AccountRepository accountRepository;
