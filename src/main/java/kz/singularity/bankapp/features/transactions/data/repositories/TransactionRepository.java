@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, String> {
-    List<Transaction> findAll();
+    List<Transaction> findAllByAccountID(String accountID);
 }

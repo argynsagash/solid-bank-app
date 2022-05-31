@@ -5,7 +5,9 @@ import kz.singularity.bankapp.features.accounts.domain.services.AccountListingSe
 import kz.singularity.bankapp.features.transactions.domain.services.TransactionDeposit;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service
 @Component
 @AllArgsConstructor
 public class TransactionDepositCLI {
@@ -17,6 +19,12 @@ public class TransactionDepositCLI {
         Account account = accountListingService.getClientAccount(clientID, withdrawDepositOperationCLIUI.requestClientAccountNumber());
         transactionDeposit.execute(account, withdrawDepositOperationCLIUI.requestClientAmount());
 
+
+    }
+
+    public void depositToAccount(Double amount, String accountID) {
+        Account account = accountListingService.getClientAccount("1", accountID);
+        transactionDeposit.execute(account, amount);
 
     }
 }
